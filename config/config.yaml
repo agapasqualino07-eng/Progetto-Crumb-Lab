@@ -1,0 +1,92 @@
+# ============================================================
+# Faro — configurazione per-nicchia (PROJECT.md §6)
+# Tutto ciò che è "criterio di business" sta qui, non nel codice.
+# ============================================================
+
+zona:
+  # Lista ordinata: quando il pool `nuovo` di una zona scende sotto
+  # `soglia_espansione`, il sistema passa alla zona successiva DA SOLO (#1).
+  citta: ["Catania", "Acireale", "Misterbianco", "Siracusa", "Ragusa"]
+  provincia_default: "CT"
+  soglia_espansione: 15        # lead `nuovo` minimi per zona prima di espandere
+
+targeting:
+  peso_bucket:                 # #15 — due bucket attivi, peso A/B sugli esiti
+    no_site: 0.6
+    sito_pessimo: 0.4
+
+budget:                        # #3 — tetti letti dal BUDGET GUARD prima di ogni run
+  max_euro_mese: 30.0
+  alert_percentuale: 80        # alert email al superamento dell'80%
+  max_risultati_giorno: 60     # cap complessivo risultati Apify per run
+  costo_stimato_per_1000_risultati_eur: 4.0   # stima prudente Apify
+  costo_stimato_llm_per_contatto_eur: 0.01    # stima prudente Haiku
+
+apify:
+  # #18a — actor PINNATO. Nota (verificata lug 2026): sull'API Apify il pinning
+  # si fa col query param `build` (numero MAJOR.MINOR.BUILD o tag), NON "version".
+  actor_id: "compass~crawler-google-places"
+  actor_build: ""              # ⚠️ CHECKPOINT SOCIO: leggere il build number attuale
+                               # dalla console Apify e incollarlo qui prima del primo
+                               # run vero. Vuoto = usa il default (sconsigliato in prod).
+  max_crawled_places_per_search: 40  # #18b — cap per ricerca: vera difesa anti runaway-cost
+
+audit:                         # #7, #18c
+  soglia_score_sito: 50        # sotto = sito pessimo (lead valido)
+  anno_footer_datato: 2019     # copyright ≤ 2019 = sito datato
+  cache_giorni: 30             # stesso dominio non ri-auditato per N giorni
+  throttle_secondi: 2          # pausa tra audit consecutivi
+  pagespeed_timeout_secondi: 45
+
+registro:                      # #1 — ciclo di vita dei contatti
+  giorni_riciclo: 14           # `consegnato` non chiamato dopo N giorni → torna `nuovo`
+
+delivery:                      # #13 — quality gate
+  max_contatti_giorno: 10
+  soglia_score_priorita: 60    # consegna SOLO sopra soglia, anche se < 10
+
+retention:                     # #11
+  mesi_massimi: 12             # purge automatico oltre la finestra
+  mesi_massimi_ditta_individuale: 6   # path stricter (#17.7)
+
+llm:
+  model: "claude-haiku-4-5"    # override con env LLM_MODEL
+  max_tokens: 1024
+
+# ------------------------------------------------------------
+# Nicchie: parti con SOLO `concessionarie` attiva (attiva: true).
+# Le altre si accendono da qui quando la prima funziona.
+# ------------------------------------------------------------
+nicchie:
+  concessionarie:
+    attiva: true
+    categorie_google: ["concessionaria auto", "auto usate", "autosalone"]
+    segnali_intent: ["annunci_subito", "nuova_apertura", "in_assunzione"]
+    ticket_fit_proxy: ["volume_annunci", "num_recensioni"]   # #16
+    soglia_recensioni_min: 5
+    soglia_rating_min: 3.0
+    # proxy ticket-fit su num_recensioni: sotto `basso` → basso, sopra `alto` → alto
+    ticket_fit_recensioni: { basso: 15, alto: 60 }
+    note_legali: "telefono aziendale pubblico ok"
+
+  atelier_lusso:
+    attiva: false
+    categorie_google: ["atelier", "abiti da sposa", "boutique"]
+    segnali_intent: ["nuova_collezione", "eventi", "instagram_attivo"]
+    ticket_fit_proxy: ["fascia_prezzo", "multi_sede"]        # #16
+    soglia_recensioni_min: 3
+    soglia_rating_min: 3.5
+    ticket_fit_recensioni: { basso: 10, alto: 40 }
+    note_legali: ""
+
+  studi_professionali:
+    attiva: false
+    categorie_google: ["commercialista", "studio commercialista"]
+    segnali_intent: ["nuova_sede", "nuovo_socio"]
+    ticket_fit_proxy: ["num_soci"]                           # #16
+    soglia_recensioni_min: 3
+    soglia_rating_min: 3.5
+    ticket_fit_recensioni: { basso: 5, alto: 25 }
+    note_legali: >-
+      ATTENZIONE deontologia: no toni promozionali aggressivi;
+      ditta individuale = dati personali, cautela GDPR maggiore + path stricter (sez.7)

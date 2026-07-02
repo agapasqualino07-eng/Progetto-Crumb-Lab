@@ -1,0 +1,74 @@
+# Faro — run giornaliero (PROJECT.md §2.6, Milestone M6)
+#
+# ⚠️ KILL SWITCH: per fermare tutto in emergenza →
+#    GitHub → tab "Actions" → workflow "Faro run giornaliero" →
+#    menu "…" in alto a destra → "Disable workflow". 10 secondi.
+#
+# ⚠️ CHECKPOINT SOCIO: i secret vanno inseriti in
+#    Settings → Secrets and variables → Actions → New repository secret.
+#    Il runner è EFFIMERO: lo stato vive sul Google Sheet, mai su file locali.
+
+name: Faro run giornaliero
+
+on:
+  schedule:
+    - cron: "30 5 * * 1-5"   # 05:30 UTC = 07:30 Italia (estate), lun-ven
+  workflow_dispatch:          # lancio manuale dal tab Actions (anche in dry-run)
+    inputs:
+      dry_run:
+        description: "Dry-run (nessuna spesa, nessuna scrittura sul Sheet)"
+        type: boolean
+        default: false
+
+jobs:
+  run-faro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installa dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Esegui la pipeline
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          REPORT_EMAIL_TO: ${{ secrets.REPORT_EMAIL_TO }}
+          REPORT_EMAIL_FROM: ${{ secrets.REPORT_EMAIL_FROM }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python -m core.run --dry-run
+          else
+            python -m core.run
+          fi
+
+      - name: Notifica fallimento
+        if: failure()
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          REPORT_EMAIL_TO: ${{ secrets.REPORT_EMAIL_TO }}
+          REPORT_EMAIL_FROM: ${{ secrets.REPORT_EMAIL_FROM }}
+        run: |
+          python - <<'EOF'
+          from core.observability import invia_email
+          invia_email("❌ Faro: il run di oggi è FALLITO",
+                      "Il run giornaliero è fallito. Controlla i log su GitHub Actions "
+                      "(tab Actions → Faro run giornaliero → ultimo run).")
+          EOF

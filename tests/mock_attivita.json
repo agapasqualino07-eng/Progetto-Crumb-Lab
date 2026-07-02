@@ -1,0 +1,110 @@
+[
+  {
+    "placeId": "mock_001",
+    "title": "Autosalone Etna Motors",
+    "categoryName": "Concessionaria auto",
+    "address": "Via Vincenzo Giuffrida 120, Catania",
+    "city": "Catania",
+    "phone": "+39 095 123 4567",
+    "website": "",
+    "totalScore": 4.3,
+    "reviewsCount": 87,
+    "claimThisBusiness": true
+  },
+  {
+    "placeId": "mock_002",
+    "title": "Catania Auto Srl",
+    "categoryName": "Auto usate",
+    "address": "Stradale Primosole 15, Catania",
+    "city": "Catania",
+    "phone": "095 765 4321",
+    "website": "https://esempio-sito-datato.example",
+    "totalScore": 4.0,
+    "reviewsCount": 42,
+    "claimThisBusiness": false
+  },
+  {
+    "placeId": "mock_003",
+    "title": "Autosalone Sicilia di Mario Bianchi",
+    "categoryName": "Autosalone",
+    "address": "Via Palermo 300, Catania",
+    "city": "Catania",
+    "phone": "+39 095 555 0101",
+    "website": "",
+    "totalScore": 4.6,
+    "reviewsCount": 12,
+    "claimThisBusiness": true
+  },
+  {
+    "placeId": "mock_004",
+    "title": "Riviera Motori",
+    "categoryName": "Concessionaria auto",
+    "address": "Corso Italia 45, Acireale",
+    "city": "Acireale",
+    "phone": "095 888 7766",
+    "website": "http://riviera-motori-vecchio.example",
+    "totalScore": 3.9,
+    "reviewsCount": 130,
+    "claimThisBusiness": false
+  },
+  {
+    "placeId": "mock_005",
+    "title": "AutoPoint Misterbianco",
+    "categoryName": "Auto usate",
+    "address": "Via Garibaldi 8, Misterbianco",
+    "city": "Misterbianco",
+    "phone": "numero-non-valido",
+    "website": "",
+    "totalScore": 4.1,
+    "reviewsCount": 25,
+    "claimThisBusiness": true
+  },
+  {
+    "placeId": "mock_005",
+    "title": "AutoPoint Misterbianco (duplicato cross-query)",
+    "categoryName": "Autosalone",
+    "address": "Via Garibaldi 8, Misterbianco",
+    "city": "Misterbianco",
+    "phone": "095 111 2233",
+    "website": "",
+    "totalScore": 4.1,
+    "reviewsCount": 25,
+    "claimThisBusiness": true
+  },
+  {
+    "placeId": "mock_006",
+    "title": "Micro Garage",
+    "categoryName": "Autosalone",
+    "address": "Via Etnea 999, Catania",
+    "city": "Catania",
+    "phone": "+39 095 222 3344",
+    "website": "",
+    "totalScore": 4.8,
+    "reviewsCount": 3,
+    "claimThisBusiness": true
+  },
+  {
+    "placeId": "mock_007",
+    "title": "Prestige Cars Catania",
+    "categoryName": "Concessionaria auto",
+    "address": "Viale Africa 30, Catania",
+    "city": "Catania",
+    "phone": "+39 095 444 5566",
+    "website": "",
+    "totalScore": 2.1,
+    "reviewsCount": 55,
+    "claimThisBusiness": false
+  },
+  {
+    "placeId": "mock_008",
+    "title": "Sud Auto Group",
+    "categoryName": "Concessionaria auto",
+    "address": "Zona Industriale VIII Strada, Catania",
+    "city": "Catania",
+    "phone": "+39 095 999 8877",
+    "website": "",
+    "totalScore": 4.4,
+    "reviewsCount": 210,
+    "claimThisBusiness": true
+  }
+]
