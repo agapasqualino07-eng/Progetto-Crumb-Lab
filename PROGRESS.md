@@ -80,3 +80,15 @@ il targeting** prima di qualsiasi FASE 2. Criterio pre-committato, vedi README.
 ## Note [FASE 2] (non costruite, per scelta)
 Supabase, enrichment a pagamento, Places API ufficiale, nome titolare con
 base giuridica, dashboard, CrewAI/LangGraph, multi-nicchia piena.
+
+## ✅ M4-bis · TEAM COPY (aggiunta su richiesta, 02/07/2026)
+Cinque nuovi agenti in pipeline dopo l'hook, solo per i lead in consegna:
+`agents/ricerca_mercato.py` (dossier per nicchia, 1 chiamata LLM/run),
+`agents/copywriter.py` (copione: apertura/discovery/pitch/chiusura, template
+in `templates/copione_prompt.md`), `agents/persuasione.py` (mappa obiezioni→
+risposte con leve etiche), `agents/vendita_telefonica.py` (rifinitura parlato,
+gatekeeper, segreteria, follow-up WhatsApp), `agents/revisore.py` (correzione
+bozze + controllo deterministico anti-invenzione su telefoni/URL).
+Base di conoscenza con fonti: `docs/COPIONE_MASTER.md` (copione fisso + 16
+obiezioni con risposte). Nuove colonne consegna: `copione`, `obiezioni_risposte`.
+Verificato: 16 test verdi, dry-run end-to-end coi nuovi campi popolati.

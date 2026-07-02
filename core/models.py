@@ -64,6 +64,8 @@ class Contatto:
     hook: str = ""
     hook_variante: str = ""          # #6b — quale leva usa l'hook
     bozza_messaggio: str = ""
+    copione: str = ""                # copione telefonico personalizzato (team copy)
+    obiezioni_risposte: str = ""     # mappa obiezione → risposta per la chiamata
     stato_registro: str = STATO_NUOVO      # #1
     pipeline_stage: str = ""                # #18d
     data_generazione: str = ""
@@ -108,6 +110,6 @@ COLONNE_CONSEGNA = [
     "place_id", "nome", "categoria", "citta", "telefono", "email_aziendale",
     "sito", "bucket", "score_sito", "problemi_sito", "segnale_intent",
     "ticket_fit", "score_priorita", "motivazione_score",
-    "hook", "hook_variante", "bozza_messaggio", "data_generazione",
-    "stato_chiamata", "note", "data_contatto",
+    "hook", "hook_variante", "bozza_messaggio", "copione", "obiezioni_risposte",
+    "data_generazione", "stato_chiamata", "note", "data_contatto",
 ]

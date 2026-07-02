@@ -22,7 +22,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from agents import audit, budget_guard, delivery, enrich, filtro, hook, scoring, scout
+from agents import (audit, budget_guard, copywriter, delivery, enrich, filtro,
+                    hook, persuasione, ricerca_mercato, revisore, scoring, scout,
+                    vendita_telefonica)
 from core.config import carica_config, env, nicchie_attive
 from core.llm import crea_llm
 from core.models import Contatto, STAGE_HOOKED, STAGE_SCORED, STATO_NUOVO, stage_raggiunto
@@ -140,6 +142,39 @@ def esegui_run(dry_run: bool, config_path: str | None = None) -> int:
     da_hookare = [c for c in selezione if not stage_raggiunto(c, STAGE_HOOKED)]
     gia_hookati = [c for c in selezione if stage_raggiunto(c, STAGE_HOOKED)]
     hookati = hook.genera_hook(da_hookare, llm, report) + gia_hookati
+
+    # ---- [6bis] TEAM COPY: copione + obiezioni per i soli lead in consegna ----
+    # ricerca mercato (1 dossier per nicchia) → copywriter → persuasione →
+    # vendita telefonica → revisore. Idempotente: chi ha già il copione salta.
+    feedback = scoring.statistiche_feedback(esiti_consegna)
+    dossier_cache: dict[str, dict] = {}
+    for c in hookati:
+        if c.copione:
+            continue
+        if c.nicchia not in dossier_cache:
+            dossier_cache[c.nicchia] = ricerca_mercato.dossier_nicchia(
+                c.nicchia, citta, feedback, llm)
+        dossier = dossier_cache[c.nicchia]
+        bozza = copywriter.scrivi_copione(c, dossier, llm)
+        if bozza is None:
+            report.errori.append(f"copywriter: parse fallito per {c.nome} "
+                                 "(consegnato col solo hook)")
+            continue
+        obiezioni = persuasione.mappa_obiezioni(c, dossier, llm)
+        if obiezioni is None:
+            report.errori.append(f"persuasione: parse fallito per {c.nome}")
+        finale = vendita_telefonica.rifinisci(c, bozza, llm)
+        if finale is None:
+            # fallback: il copione grezzo del copywriter è meglio di niente
+            finale = {"copione": "\n".join(filter(None, [
+                bozza.get("apertura", ""),
+                "\n".join(f"- {d}" for d in bozza.get("discovery", [])),
+                bozza.get("pitch", ""), bozza.get("chiusura", "")]))}
+            report.errori.append(f"vendita_telefonica: parse fallito per {c.nome}, "
+                                 "uso il copione non rifinito")
+        rivisto = revisore.rivedi(c, finale, obiezioni or [], llm)
+        c.copione = rivisto["copione"]
+        c.obiezioni_risposte = rivisto["obiezioni_risposte"]
 
     # ---- [7] DELIVERY + QUALITY GATE (#13) ----
     delivery.consegna(hookati, cfg, storage, report, oggi)

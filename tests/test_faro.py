@@ -151,3 +151,42 @@ def test_cancellazione_su_richiesta():
     contatti = [Contatto(place_id="a"), Contatto(place_id="b")]
     dopo, trovato = cancella_contatto(contatti, "a")
     assert trovato and len(dopo) == 1
+
+
+# ------------------------------------------------- team copy (revisore)
+
+def test_revisore_segnala_telefono_inventato():
+    from agents.revisore import controlla_coerenza
+    c = Contatto(place_id="z", nome="Z", telefono="+390951234567",
+                 sito="https://esempio.example")
+    testo = "Chiamaci allo 095 999 8888 o visita https://truffa.example/offerta"
+    avvisi = controlla_coerenza(c, testo)
+    assert len(avvisi) == 2   # telefono E url non presenti nei dati
+
+
+def test_revisore_ok_con_dati_reali():
+    from agents.revisore import controlla_coerenza
+    c = Contatto(place_id="z", nome="Z", telefono="+390951234567",
+                 sito="https://esempio.example")
+    testo = "La richiamo al +39 095 1234567, ho visto esempio.example"
+    assert controlla_coerenza(c, testo) == []
+
+
+def test_catena_copy_in_dry_run():
+    """L'intera catena copy gira con l'LLM finto e produce copione + obiezioni."""
+    from agents import copywriter, persuasione, ricerca_mercato, revisore, vendita_telefonica
+    from core.llm import LLMFinto
+    llm = LLMFinto()
+    c = Contatto(place_id="t", nome="Test Motors", categoria="Concessionaria auto",
+                 citta="Catania", bucket="no_site", ticket_fit="alto",
+                 segnale_intent="scheda non rivendicata", hook="hook di prova")
+    dossier = ricerca_mercato.dossier_nicchia("concessionarie", "Catania", "", llm)
+    assert dossier["argomenti_chiave"]
+    bozza = copywriter.scrivi_copione(c, dossier, llm)
+    assert bozza and "apertura" in bozza
+    obiezioni = persuasione.mappa_obiezioni(c, dossier, llm)
+    assert obiezioni and obiezioni[0]["obiezione"]
+    finale = vendita_telefonica.rifinisci(c, bozza, llm)
+    assert finale and "copione" in finale
+    rivisto = revisore.rivedi(c, finale, obiezioni, llm)
+    assert rivisto["copione"] and rivisto["obiezioni_risposte"]

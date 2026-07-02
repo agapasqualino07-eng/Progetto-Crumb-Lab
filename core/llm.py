@@ -103,6 +103,18 @@ class LLMFinto:
                 "score_priorita": max(0, min(100, base)),
                 "motivazione": "[DRY-RUN] score simulato dai campi intent/ticket_fit/bucket",
             }
+        if "apertura" in campi_attesi:      # copywriter
+            return {
+                "apertura": "[DRY-RUN] apertura simulata dall'hook",
+                "discovery": ["[DRY-RUN] domanda 1?", "[DRY-RUN] domanda 2?"],
+                "pitch": "[DRY-RUN] pitch simulato",
+                "chiusura": "[DRY-RUN] chiusura su appuntamento",
+            }
+        if "obiezioni" in campi_attesi:     # persuasione
+            return {"obiezioni": [
+                {"obiezione": "[DRY-RUN] non ho tempo",
+                 "risposta": "[DRY-RUN] risposta simulata", "leva": "riprova-sociale"},
+            ]}
         if "hook" in campi_attesi:
             variante = "intent" if ("segnale_intent: " in prompt and "segnale_intent: \n" not in prompt) else "problema-sito"
             return {
