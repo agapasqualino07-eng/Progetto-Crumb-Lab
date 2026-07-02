@@ -103,6 +103,14 @@ class LLMFinto:
                 "score_priorita": max(0, min(100, base)),
                 "motivazione": "[DRY-RUN] score simulato dai campi intent/ticket_fit/bucket",
             }
+        if "ordine_nicchie" in campi_attesi:   # esploratore nicchie
+            return {"ordine_nicchie": [], "motivo": "[DRY-RUN] ordine simulato",
+                    "nicchie_proposte": [{"nome": "[DRY-RUN] nicchia demo",
+                                          "categorie_google": ["demo"],
+                                          "leva": "[DRY-RUN] leva demo",
+                                          "ticket_fit_proxy": "num_recensioni"}]}
+        if "voto" in campi_attesi:             # critico copy
+            return {"voto": 85, "punti_deboli": [], "suggerimenti": []}
         if "apertura" in campi_attesi:      # copywriter
             return {
                 "apertura": "[DRY-RUN] apertura simulata dall'hook",

@@ -39,6 +39,8 @@ class RunReport:
     pool_residuo: dict = field(default_factory=dict)  # zona → lead `nuovo` residui
     prossima_espansione: str = ""
     giornata_basso_rendimento: bool = False
+    voti_copy: list = field(default_factory=list)      # voti del critico copy
+    nicchie_suggerite: list = field(default_factory=list)  # proposte esploratore
 
     def aggiungi_filtro(self, motivo: str):
         self.filtrati[motivo] = self.filtrati.get(motivo, 0) + 1
@@ -68,6 +70,16 @@ class RunReport:
             f"Consegnati: {self.consegnati}",
             f"Spesa stimata run: €{self.spesa_run_eur:.2f}",
         ]
+        if self.voti_copy:
+            righe.append(f"Qualità copy (voto critico): media "
+                         f"{sum(self.voti_copy) / len(self.voti_copy):.0f}/100 "
+                         f"su {len(self.voti_copy)} copioni")
+        if self.nicchie_suggerite:
+            righe.append("Nicchie NUOVE proposte dall'esploratore (da attivare "
+                         "a mano in config, se convincono):")
+            for n in self.nicchie_suggerite:
+                if isinstance(n, dict):
+                    righe.append(f" - {n.get('nome', '?')}: {n.get('leva', '')}")
         if self.errori:
             righe += ["", "ERRORI:"] + [f" - {e}" for e in self.errori]
         return "\n".join(righe)

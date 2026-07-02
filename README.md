@@ -24,10 +24,21 @@ oltre al budget guard (che blocca da solo i run oltre il tetto di spesa).
 ## Come funziona (in breve)
 
 ```
-BUDGET GUARD → SCOUT (Google Maps via Apify) → FILTRO (bucket + registro)
+BUDGET GUARD → ESPLORATORE NICCHIE (ordina le nicchie, ne propone di nuove)
+→ SCOUT (Google Maps via Apify, multi-nicchia) → FILTRO (bucket + registro)
 → AUDIT (qualità sito) → ENRICH (email generica, intent, ticket-fit, telefono)
-→ SCORING (LLM) → HOOK (LLM) → DELIVERY (quality gate, max 10) → REPORT email
+→ SCORING (LLM) → HOOK (LLM)
+→ TEAM COPY: ricerca mercato → copywriter → persuasione → vendita telefonica
+             → revisore bozze → CRITICO (vota il copy; sotto 70 lo fa riscrivere)
+→ DELIVERY (quality gate, max 10) → TELEGRAM (i 10 lead sul tuo telefono) + email
 ```
+
+Le nicchie vivono in `config/config.yaml`: oggi attive `concessionarie`,
+`bb_case_vacanza`, `edilizia_ristrutturazioni`; in catalogo (spente, si
+accendono con `attiva: true`): ristoranti/pizzerie, dentisti/studi medici,
+fotografi/wedding, palestre/centri, atelier, studi professionali.
+L'esploratore propone nicchie nuove nel report: si attivano SOLO a mano
+(il sistema non allarga da solo la raccolta dati — scelta GDPR).
 
 - **Lo stato vive sul Google Sheet** (tab `registro`, `spesa`, `consegna`):
   il runner di GitHub Actions è effimero, nessun file locale conta.
@@ -81,6 +92,21 @@ Servono 4 cose, tutte spiegate passo-passo:
 
 Per i test **in locale**: copia `.env.example` in `.env` e incolla lì le stesse
 chiavi. Il `.env` è già nel `.gitignore`: **non finirà mai su GitHub**.
+
+### Telegram: i 10 lead sul telefono ogni mattina (5 minuti di setup)
+
+1. Su Telegram cerca **@BotFather** → scrivi `/newbot` → dagli un nome (es.
+   "Faro Lead") → BotFather ti risponde con un **token** (una riga tipo
+   `123456:ABC-...`). Copialo.
+2. Cerca il tuo bot per nome su Telegram e **scrivigli un messaggio qualsiasi**
+   (serve ad aprire la chat).
+3. Apri nel browser `https://api.telegram.org/bot<TOKEN>/getUpdates`
+   (col tuo token al posto di `<TOKEN>`) e copia il numero dopo `"chat":{"id":`.
+4. Metti i due valori nei GitHub Secrets: `TELEGRAM_BOT_TOKEN` e
+   `TELEGRAM_CHAT_ID`. Fine: da domattina il bot ti manda il riepilogo +
+   un messaggio per lead (telefono, hook, copione, obiezioni).
+
+Se Telegram non è configurato il run funziona lo stesso: arriva solo l'email.
 
 Il run parte da solo **lun–ven alle 7:30** (ora italiana). Per lanciarlo a
 mano: tab Actions → "Faro run giornaliero" → **Run workflow** (con la spunta

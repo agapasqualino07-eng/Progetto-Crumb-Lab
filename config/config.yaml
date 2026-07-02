@@ -53,6 +53,13 @@ llm:
   model: "claude-haiku-4-5"    # override con env LLM_MODEL
   max_tokens: 1024
 
+copy:                          # team copy: controllo qualità del critico
+  soglia_critico: 70           # voto minimo del critico; sotto → 1 giro di miglioria
+  max_iterazioni: 1            # MAI più di 1 rewrite (costi sotto controllo)
+
+telegram:
+  attivo: true                 # consegna mattutina su Telegram (se token configurato)
+
 # ------------------------------------------------------------
 # Nicchie: parti con SOLO `concessionarie` attiva (attiva: true).
 # Le altre si accendono da qui quando la prima funziona.
@@ -90,3 +97,73 @@ nicchie:
     note_legali: >-
       ATTENZIONE deontologia: no toni promozionali aggressivi;
       ditta individuale = dati personali, cautela GDPR maggiore + path stricter (sez.7)
+
+  # ---- Catalogo esteso: nicchie dove il sito è FONDAMENTALE ----
+  # (accendile con attiva: true; l'esploratore le ordina per priorità)
+  bb_case_vacanza:
+    attiva: true
+    categorie_google: ["bed and breakfast", "casa vacanze", "affittacamere", "agriturismo"]
+    segnali_intent: ["solo_booking_airbnb", "recensioni_recenti", "nuova_apertura"]
+    ticket_fit_proxy: ["num_recensioni", "multi_struttura"]
+    soglia_recensioni_min: 5
+    soglia_rating_min: 3.5
+    ticket_fit_recensioni: { basso: 20, alto: 100 }
+    note_legali: "spesso ditte individuali/famiglie → path stricter frequente"
+    leva_chiave: "commissioni OTA 15-25% vs prenotazioni dirette dal sito"
+
+  ristoranti_pizzerie:
+    attiva: false
+    categorie_google: ["ristorante", "pizzeria", "trattoria"]
+    segnali_intent: ["solo_social", "menu_non_online", "prenotazioni_telefono"]
+    ticket_fit_proxy: ["num_recensioni", "fascia_prezzo"]
+    soglia_recensioni_min: 30
+    soglia_rating_min: 3.8
+    ticket_fit_recensioni: { basso: 80, alto: 400 }
+    note_legali: ""
+    leva_chiave: "menu + prenotazioni online; chi cerca 'pizzeria + zona' sceglie in 10 secondi"
+
+  edilizia_ristrutturazioni:
+    attiva: true
+    categorie_google: ["impresa edile", "ristrutturazioni", "impresa di costruzioni"]
+    segnali_intent: ["cantieri_attivi", "in_assunzione", "bonus_edilizi"]
+    ticket_fit_proxy: ["num_recensioni", "num_dipendenti"]
+    soglia_recensioni_min: 3
+    soglia_rating_min: 3.5
+    ticket_fit_recensioni: { basso: 5, alto: 30 }
+    note_legali: ""
+    leva_chiave: "ticket cliente altissimo: un solo lavoro ripaga il sito 10 volte; il sito è il portfolio"
+
+  dentisti_studi_medici:
+    attiva: false
+    categorie_google: ["dentista", "studio dentistico", "fisioterapista"]
+    segnali_intent: ["nuovo_studio", "recensioni_recenti"]
+    ticket_fit_proxy: ["num_recensioni", "num_professionisti"]
+    soglia_recensioni_min: 10
+    soglia_rating_min: 4.0
+    ticket_fit_recensioni: { basso: 20, alto: 100 }
+    note_legali: >-
+      ATTENZIONE pubblicità sanitaria (L.145/2018): solo informativa,
+      niente toni promozionali; deontologia ordine dei medici
+    leva_chiave: "il paziente sceglie da Google e recensioni; prenotazione online"
+
+  fotografi_wedding:
+    attiva: false
+    categorie_google: ["fotografo matrimonio", "wedding planner", "sala ricevimenti"]
+    segnali_intent: ["stagione_matrimoni", "instagram_attivo"]
+    ticket_fit_proxy: ["num_recensioni", "fascia_prezzo"]
+    soglia_recensioni_min: 5
+    soglia_rating_min: 4.0
+    ticket_fit_recensioni: { basso: 10, alto: 60 }
+    note_legali: "spesso ditte individuali → path stricter frequente"
+    leva_chiave: "senza portfolio online non esisti: il sito È il prodotto"
+
+  palestre_centri:
+    attiva: false
+    categorie_google: ["palestra", "centro fitness", "centro estetico"]
+    segnali_intent: ["nuova_apertura", "solo_social"]
+    ticket_fit_proxy: ["num_recensioni", "multi_sede"]
+    soglia_recensioni_min: 15
+    soglia_rating_min: 3.8
+    ticket_fit_recensioni: { basso: 40, alto: 150 }
+    note_legali: ""
+    leva_chiave: "orari, listino e iscrizione online; chi cerca 'palestra + quartiere' decide subito"

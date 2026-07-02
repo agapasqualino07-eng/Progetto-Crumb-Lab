@@ -92,3 +92,20 @@ bozze + controllo deterministico anti-invenzione su telefoni/URL).
 Base di conoscenza con fonti: `docs/COPIONE_MASTER.md` (copione fisso + 16
 obiezioni con risposte). Nuove colonne consegna: `copione`, `obiezioni_risposte`.
 Verificato: 16 test verdi, dry-run end-to-end coi nuovi campi popolati.
+
+## ✅ M4-ter · MULTI-NICCHIA + CRITICO + TELEGRAM (02/07/2026)
+- `agents/esploratore_nicchie.py`: ordina le nicchie attive per priorità
+  (pool scarso + feedback esiti) e PROPONE nicchie nuove nel report — mai
+  auto-attivate (scelta GDPR: lo scope dati si allarga solo a mano in config).
+- Catalogo nicchie esteso in config: bb/case vacanza ed edilizia ATTIVE
+  accanto alle concessionarie; ristoranti, dentisti (con nota pubblicità
+  sanitaria L.145/2018), fotografi/wedding, palestre in catalogo spente.
+- `agents/critico_copy.py`: rubrica in 5 criteri, voto 0-100; sotto la
+  soglia (70) UNA riscrittura mirata e rivalutazione. Voto medio nel report.
+- `core/telegram.py`: consegna mattutina su Telegram (riepilogo + 1 messaggio
+  per lead con telefono/hook/copione/obiezioni), fallback silenzioso su email.
+  Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (istruzioni nel README).
+- Stima budget aggiornata (~9 chiamate LLM/contatto).
+Verificato: 21 test verdi; dry-run multi-nicchia end-to-end (3 nicchie
+ordinate dall'esploratore, critico 85/100 sui copioni, 4 messaggi Telegram
+preparati e loggati senza invio).

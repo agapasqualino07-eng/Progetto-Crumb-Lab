@@ -190,3 +190,70 @@ def test_catena_copy_in_dry_run():
     assert finale and "copione" in finale
     rivisto = revisore.rivedi(c, finale, obiezioni, llm)
     assert rivisto["copione"] and rivisto["obiezioni_risposte"]
+
+
+# --------------------------------- multi-nicchia, critico e Telegram
+
+class _LLMMuto:
+    """LLM che fallisce sempre: per testare i fallback deterministici."""
+    chiamate = 0
+    def genera_json(self, *a, **k):
+        return None
+
+
+def test_esploratore_fallback_pool_scarso():
+    from agents import esploratore_nicchie
+    nicchie = {"a": {"leva_chiave": ""}, "b": {"leva_chiave": ""}}
+    ordine, proposte, _ = esploratore_nicchie.esplora(
+        nicchie, ["a", "b"], {"a": 50, "b": 2}, "Catania", "", _LLMMuto())
+    assert ordine == ["b", "a"]   # pool più scarso per primo
+    assert proposte == []
+
+
+def test_critico_sopra_soglia_non_riscrive():
+    from agents import critico_copy
+    from core.llm import LLMFinto
+    c = Contatto(place_id="k", nome="K", copione="testo", obiezioni_risposte="ob")
+    cfg = {"copy": {"soglia_critico": 70, "max_iterazioni": 1}}
+    voto = critico_copy.controlla_e_migliora(c, LLMFinto(), cfg)
+    assert voto == 85                    # LLMFinto vota 85
+    assert c.copione == "testo"          # nessuna riscrittura sopra soglia
+
+
+def test_critico_sotto_soglia_riscrive_una_volta():
+    from agents import critico_copy
+
+    class _LLMSevero:
+        """Prima valutazione 50, poi migliora, poi 90."""
+        def __init__(self):
+            self.voti = [50, 90]
+        def genera_json(self, prompt, system, campi):
+            if "voto" in campi:
+                return {"voto": self.voti.pop(0), "punti_deboli": ["debole"],
+                        "suggerimenti": ["più specifico"]}
+            return {"copione": "RISCRITTO", "obiezioni_risposte": "RISCRITTE"}
+
+    c = Contatto(place_id="k", nome="K", copione="fiacco", obiezioni_risposte="ob")
+    cfg = {"copy": {"soglia_critico": 70, "max_iterazioni": 1}}
+    voto = critico_copy.controlla_e_migliora(c, _LLMSevero(), cfg)
+    assert voto == 90
+    assert c.copione == "RISCRITTO"
+
+
+def test_telegram_formatta_lead_entro_limite():
+    from core.telegram import formatta_lead, MAX_LEN
+    c = Contatto(place_id="t", nome="Test", citta="Catania",
+                 telefono="+390951234567", score_priorita="80",
+                 hook="hook", copione="x" * 10000, obiezioni_risposte="y" * 5000)
+    msg = formatta_lead(1, c)
+    assert len(msg) <= MAX_LEN + 200     # troncato, non esplode
+    assert "+390951234567" in msg        # i dati di chiamata restano
+
+
+def test_telegram_non_invia_in_dry_run():
+    from core.telegram import invia_consegna
+    from core.observability import RunReport
+    cfg = {"telegram": {"attivo": True}}
+    n = invia_consegna([Contatto(place_id="t", nome="T")], RunReport(),
+                       "02/07/2026", cfg, dry_run=True)
+    assert n == 0   # niente rete in dry-run

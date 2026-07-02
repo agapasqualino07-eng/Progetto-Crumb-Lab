@@ -37,9 +37,10 @@ def stima_costo_run(cfg: dict) -> float:
     """Stima prudente del costo del run PRIMA di lanciarlo."""
     b = cfg["budget"]
     costo_apify = b["max_risultati_giorno"] / 1000 * b["costo_stimato_per_1000_risultati_eur"]
-    # ~7 chiamate LLM per contatto: scoring, hook, e team copy
-    # (dossier ammortizzato, copywriter, persuasione, telefono, revisore)
-    costo_llm = cfg["delivery"]["max_contatti_giorno"] * 7 * b["costo_stimato_llm_per_contatto_eur"]
+    # ~9 chiamate LLM per contatto: scoring, hook, team copy (copywriter,
+    # persuasione, telefono, revisore) e critico con eventuale riscrittura;
+    # dossier ed esploratore sono ammortizzati sul run
+    costo_llm = cfg["delivery"]["max_contatti_giorno"] * 9 * b["costo_stimato_llm_per_contatto_eur"]
     return round(costo_apify + costo_llm, 2)
 
 

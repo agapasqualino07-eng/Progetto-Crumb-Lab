@@ -22,9 +22,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from agents import (audit, budget_guard, copywriter, delivery, enrich, filtro,
-                    hook, persuasione, ricerca_mercato, revisore, scoring, scout,
-                    vendita_telefonica)
+from agents import (audit, budget_guard, copywriter, critico_copy, delivery,
+                    enrich, esploratore_nicchie, filtro, hook, persuasione,
+                    ricerca_mercato, revisore, scoring, scout, vendita_telefonica)
+from core import telegram
 from core.config import carica_config, env, nicchie_attive
 from core.llm import crea_llm
 from core.models import Contatto, STAGE_HOOKED, STAGE_SCORED, STATO_NUOVO, stage_raggiunto
@@ -68,15 +69,26 @@ def esegui_run(dry_run: bool, config_path: str | None = None) -> int:
     report.prossima_espansione = prossima
     log.info("Zona di lavoro: %s (prossima espansione: %s)", citta, prossima or "nessuna")
 
+    # ---- [1a] ESPLORATORE NICCHIE: ordina le attive, propone nuove ----
+    feedback = scoring.statistiche_feedback(esiti_consegna)
+    nicchie = nicchie_attive(cfg)
+    pool_per_nicchia = {}
+    for c in registro:
+        if c.stato_registro == STATO_NUOVO:
+            pool_per_nicchia[c.nicchia] = pool_per_nicchia.get(c.nicchia, 0) + 1
+    ordine_nicchie, proposte, _ = esploratore_nicchie.esplora(
+        nicchie, list(cfg["nicchie"].keys()), pool_per_nicchia, citta, feedback, llm)
+    report.nicchie_suggerite = proposte
+
     # ---- [1] SCOUT (#4, #18a, #18b) — solo se il pool `nuovo` non basta ----
     buffer_necessario = cfg["delivery"]["max_contatti_giorno"] * 2
     pool_nuovi = [c for c in registro if c.stato_registro == STATO_NUOVO]
     nuovi, costo_apify = [], 0.0
     if len(pool_nuovi) < buffer_necessario:
-        nicchie = nicchie_attive(cfg)
         token = env("APIFY_TOKEN")
-        for nome_nicchia, nicchia_cfg in nicchie.items():
-            trovati, costo, rimossi = scout.cerca(cfg, nome_nicchia, nicchia_cfg,
+        for nome_nicchia in ordine_nicchie:
+            trovati, costo, rimossi = scout.cerca(cfg, nome_nicchia,
+                                                  nicchie[nome_nicchia],
                                                   citta, token, dry_run)
             nuovi += trovati
             costo_apify += costo
@@ -145,8 +157,8 @@ def esegui_run(dry_run: bool, config_path: str | None = None) -> int:
 
     # ---- [6bis] TEAM COPY: copione + obiezioni per i soli lead in consegna ----
     # ricerca mercato (1 dossier per nicchia) → copywriter → persuasione →
-    # vendita telefonica → revisore. Idempotente: chi ha già il copione salta.
-    feedback = scoring.statistiche_feedback(esiti_consegna)
+    # vendita telefonica → revisore → CRITICO (valuta e fa migliorare).
+    # Idempotente: chi ha già il copione salta.
     dossier_cache: dict[str, dict] = {}
     for c in hookati:
         if c.copione:
@@ -175,9 +187,15 @@ def esegui_run(dry_run: bool, config_path: str | None = None) -> int:
         rivisto = revisore.rivedi(c, finale, obiezioni or [], llm)
         c.copione = rivisto["copione"]
         c.obiezioni_risposte = rivisto["obiezioni_risposte"]
+        voto = critico_copy.controlla_e_migliora(c, llm, cfg, report)
+        if voto is not None:
+            report.voti_copy.append(voto)
 
     # ---- [7] DELIVERY + QUALITY GATE (#13) ----
-    delivery.consegna(hookati, cfg, storage, report, oggi)
+    selezionati = delivery.consegna(hookati, cfg, storage, report, oggi)
+
+    # ---- Consegna mattutina su Telegram (canale primario; email di riserva) ----
+    telegram.invia_consegna(selezionati, report, f"{oggi:%d/%m/%Y}", cfg, dry_run)
 
     # ---- Spesa LLM stimata e write finale (checkpoint fine run) ----
     # in dry-run l'LLM è finto: costo reale zero
