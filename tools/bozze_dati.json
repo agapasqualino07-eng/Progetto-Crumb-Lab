@@ -1,0 +1,169 @@
+[
+  {
+    "nicchia": "bnb",
+    "nome": "Aci B&B",
+    "citta": "Acireale",
+    "indirizzo": "Piazza Odigitria 3",
+    "telefono": "095 7634765",
+    "whatsapp": "+39 349 8183906",
+    "h1": "Il tuo B&B nel cuore di Acireale",
+    "sottotitolo": "Accoglienza di casa a due passi dal barocco di Acireale: colazione preparata personalmente dal titolare e i consigli di chi la città la vive.",
+    "badge": ["⭐ 9.2 su Booking", "💬 129 recensioni", "📍 Centro storico"],
+    "posizione_titolo": "Nel cuore del barocco",
+    "posizione_testo": "In piazza Odigitria, a pochi minuti a piedi dal Duomo, dalla Timpa e dalle granite più buone della città.",
+    "strip_titolo": "Il punteggio parla da solo: 9.2 su 129 recensioni",
+    "strip_testo": "Chi è stato qui lo racconta. Prenota direttamente e ottieni sempre la migliore tariffa disponibile, senza commissioni di portale."
+  },
+  {
+    "nicchia": "edilizia",
+    "nome": "Impresa Edile Geom. Grasso Gaetano",
+    "citta": "Acireale",
+    "indirizzo": "Via Anna Frank 10",
+    "telefono": "095 7648272",
+    "h1": "Costruiamo e risaniamo dal 1982",
+    "sottotitolo": "Oltre quarant'anni di cantieri ad Acireale e provincia: progettazione, risanamento e ristrutturazioni seguiti direttamente dal geometra, dal sopralluogo alla consegna.",
+    "badge": ["🏗️ Dal 1982", "📐 Progettazione e direzione", "📍 Acireale e provincia"],
+    "servizi": [
+      ["Ristrutturazioni complete", "Appartamenti, ville e locali commerciali: un unico referente dal progetto alla consegna chiavi in mano."],
+      ["Risanamento e recupero", "Umidità, consolidamenti e recupero di edifici datati: la specialità di chi lavora da quarant'anni sul territorio."],
+      ["Progettazione tecnica", "Rilievi, pratiche e direzione lavori seguiti direttamente dal geometra, senza passaggi di mano."]
+    ],
+    "strip_titolo": "Quarant'anni di lavori sono la nostra referenza",
+    "strip_testo": "Il sopralluogo e il preventivo non costano nulla: raccontaci cosa vuoi fare e ti diciamo come, in quanto tempo e a che cifra."
+  },
+  {
+    "nicchia": "bnb",
+    "nome": "Catania Etnea Bed and Breakfast",
+    "citta": "Catania",
+    "indirizzo": "Via Etnea 196",
+    "telefono": "095 311343",
+    "whatsapp": "+39 095 311343",
+    "h1": "Dormi in via Etnea, nel salotto di Catania",
+    "sottotitolo": "18 camere al civico 196 di via Etnea: il Duomo, via dei Crociferi e la movida a pochi minuti a piedi, l'Etna all'orizzonte.",
+    "badge": ["💬 309 recensioni su Booking", "🛏️ 18 camere", "📍 Via Etnea 196"],
+    "posizione_titolo": "Posizione imbattibile",
+    "posizione_testo": "Sulla via principale della città: qualunque cosa tu venga a fare a Catania, parti già dal centro.",
+    "strip_titolo": "Prenota diretto: stessa camera, prezzo migliore",
+    "strip_testo": "Prenotando dal sito parli direttamente con la struttura: tariffa senza commissioni di portale e risposte immediate."
+  },
+  {
+    "nicchia": "auto",
+    "nome": "S.G. Auto",
+    "citta": "Palagonia",
+    "indirizzo": "Via Palermo 223",
+    "telefono": "389 8545674",
+    "kicker": "Auto usate e noleggio · Palagonia e il Calatino",
+    "h1": "L'usato giusto, a casa tua",
+    "sottotitolo": "Vendita di auto usate selezionate e servizio noleggio a Palagonia: le stesse auto che trovi nei nostri annunci su automobile.it, Quattroruote, Subito e AutoScout24 — qui senza intermediari.",
+    "badge": ["🚗 Usato selezionato", "🔑 Servizio noleggio", "📍 Via Palermo 223"],
+    "servizi": [
+      ["Usato garantito", "Ogni vettura è controllata prima della consegna: chiedici la storia di ogni auto in vetrina."],
+      ["Noleggio", "Soluzioni di noleggio per privati e lavoro: chiedi disponibilità e tariffe."],
+      ["Annunci sempre aggiornati", "Il parco auto qui sul sito sarà sincronizzato con gli annunci sui portali: quello che vedi c'è davvero."]
+    ],
+    "strip_titolo": "Vieni a vedere le auto dal vivo",
+    "strip_testo": "Siamo in via Palermo 223 a Palagonia. Chiama o scrivici: ti diciamo subito se l'auto che hai visto è ancora disponibile."
+  },
+  {
+    "nicchia": "edilizia",
+    "nome": "Etna Edil Costruzioni Srl",
+    "citta": "Catania",
+    "indirizzo": "Via Galermo 59",
+    "telefono": "095 8203997",
+    "h1": "Costruzioni residenziali e non, fatte a regola d'arte",
+    "sottotitolo": "Impresa di costruzioni a Catania: edifici residenziali e commerciali, ristrutturazioni e opere edili con un'unica squadra e un unico responsabile di cantiere.",
+    "badge": ["🏢 Residenziale e commerciale", "👷 Squadra propria", "📍 Catania, via Galermo"],
+    "servizi": [
+      ["Nuove costruzioni", "Edifici residenziali e non residenziali, seguiti dalla fondazione alla consegna."],
+      ["Ristrutturazioni", "Rifacimenti completi e parziali di immobili, con preventivo chiaro e tempi definiti."],
+      ["Opere edili", "Lavorazioni strutturali e di finitura con squadra propria, senza subappalti a catena."]
+    ],
+    "strip_titolo": "Un preventivo chiaro vale più di mille promesse",
+    "strip_testo": "Sopralluogo gratuito a Catania e provincia: guardiamo il lavoro, ti diamo tempi e cifre nero su bianco."
+  },
+  {
+    "nicchia": "edilizia",
+    "nome": "PGM Ristrutturazioni di Puglisi Giuseppe Martino",
+    "citta": "Mascalucia",
+    "indirizzo": "Via Pulei 100",
+    "telefono": "329 3525562",
+    "h1": "Ristrutturare casa, senza pensieri",
+    "sottotitolo": "Ristrutturazioni edili a Mascalucia e nelle province di Catania, Siracusa, Messina ed Enna — con assistenza sulle pratiche per i bonus edilizi.",
+    "badge": ["🏠 Ristrutturazioni complete", "📋 Pratiche bonus edilizi", "📍 CT · SR · ME · EN"],
+    "servizi": [
+      ["Ristrutturazioni chiavi in mano", "Dal progetto alla pulizia finale: un solo referente per tutto il cantiere."],
+      ["Bonus edilizi", "Ti seguiamo nelle pratiche per le detrazioni: capiamo insieme a cosa hai diritto prima di iniziare."],
+      ["Interventi su più province", "Operiamo tra Catania, Siracusa, Messina ed Enna: sopralluogo dove serve."]
+    ],
+    "strip_titolo": "Il preventivo è gratis, le sorprese non esistono",
+    "strip_testo": "Raccontaci il lavoro che hai in mente: ti diciamo costi, tempi e a quali bonus puoi accedere."
+  },
+  {
+    "nicchia": "bnb",
+    "nome": "B&B Piazza Duomo",
+    "citta": "Acireale",
+    "indirizzo": "Piazza Duomo 7",
+    "telefono": "392 6102853",
+    "whatsapp": "+39 392 6102853",
+    "h1": "Svegliati in piazza Duomo, ad Acireale",
+    "sottotitolo": "La piazza più bella del barocco acese fuori dalla finestra: al civico 7 di piazza Duomo, nel punto esatto dove tutti vogliono stare.",
+    "badge": ["⭐ 8.9 su Booking", "📍 Piazza Duomo 7", "💬 WhatsApp diretto"],
+    "posizione_titolo": "La posizione, appunto",
+    "posizione_testo": "Sei GIÀ in piazza Duomo: caffè storici, granite, il Duomo e la movida serale senza prendere l'auto.",
+    "strip_titolo": "Prenota direttamente con noi",
+    "strip_testo": "Contatto diretto su WhatsApp, conferma immediata e pagamento semplice: la tariffa migliore è sempre quella senza intermediari."
+  },
+  {
+    "nicchia": "edilizia",
+    "nome": "Impresa Edile di Privitera Mario",
+    "citta": "Misterbianco",
+    "indirizzo": "Via Livorno 47",
+    "telefono": "391 1794803",
+    "h1": "Trent'anni di cantieri, un solo modo di lavorare: bene",
+    "sottotitolo": "Impresa edile a Misterbianco con oltre trent'anni di esperienza: ristrutturazioni e lavori edili seguiti di persona dal titolare, dall'inizio alla fine.",
+    "badge": ["🏗️ Oltre 30 anni di esperienza", "🤝 Il titolare in cantiere", "📍 Misterbianco"],
+    "servizi": [
+      ["Ristrutturazioni", "Case e appartamenti rimessi a nuovo con l'esperienza di chi ne ha visti di tutti i tipi."],
+      ["Lavori edili", "Murature, intonaci, rifacimenti: la manodopera di una volta con i materiali di oggi."],
+      ["Preventivi onesti", "Trent'anni sullo stesso territorio si costruiscono con una cosa sola: la parola mantenuta."]
+    ],
+    "strip_titolo": "L'esperienza non si improvvisa",
+    "strip_testo": "Chiamaci per un sopralluogo senza impegno: ti diciamo cosa serve davvero — e cosa no."
+  },
+  {
+    "nicchia": "auto",
+    "nome": "Auto 2000",
+    "citta": "Aci Catena",
+    "indirizzo": "Via Pozzo 49",
+    "telefono": "095 7644789",
+    "kicker": "Auto usate ad Aci Catena · dal 1999",
+    "h1": "Da oltre 25 anni, l'usato di fiducia ad Aci Catena",
+    "sottotitolo": "Dal 1999 vendiamo auto usate ad Aci Catena: un quarto di secolo sullo stesso territorio, con clienti che tornano e portano i figli.",
+    "badge": ["📅 Dal 1999", "🤝 Gestione familiare", "📍 Via Pozzo 49"],
+    "servizi": [
+      ["Usato selezionato", "Auto controllate e scelte una per una, come si fa da 25 anni."],
+      ["Permute", "Valutiamo il tuo usato e lo scaliamo dal prezzo: un passaggio solo, senza pensieri."],
+      ["Assistenza post-vendita", "Il salone resta qui: qualunque cosa serva dopo l'acquisto, sai dove trovarci."]
+    ],
+    "strip_titolo": "25 anni di targhe consegnate",
+    "strip_testo": "La fiducia si costruisce un cliente alla volta. Passa in via Pozzo: guardi, chiedi, decidi con calma."
+  },
+  {
+    "nicchia": "auto",
+    "nome": "Autoaffari Srl",
+    "citta": "Motta Sant'Anastasia",
+    "indirizzo": "C.da Monzello Li Cuti",
+    "telefono": "095 8360633",
+    "kicker": "Auto nuove e usate · Motta Sant'Anastasia",
+    "h1": "Il tuo prossimo affare ha quattro ruote",
+    "sottotitolo": "Vendita di auto nuove e usate a Motta Sant'Anastasia, sulla direttrice dell'aeroporto: comodi da raggiungere da tutta la provincia di Catania.",
+    "badge": ["🚗 Nuovo e usato", "🛣️ Direttrice aeroporto", "📍 Motta Sant'Anastasia"],
+    "servizi": [
+      ["Auto nuove", "Ti aiutiamo a scegliere e ordinare il nuovo che fa per te, al prezzo giusto."],
+      ["Usato controllato", "Vetture verificate prima della vendita: chiedici tutto di ogni auto in piazzale."],
+      ["Facilità di raggiungimento", "A due passi dallo svincolo: vieni a vedere le auto senza traffico e senza parcheggi impossibili."]
+    ],
+    "strip_titolo": "Passa dal piazzale, il caffè lo offriamo noi",
+    "strip_testo": "Siamo in contrada Monzello Li Cuti, sulla strada per l'aeroporto: chiama prima e ti facciamo trovare le auto che ti interessano già pronte."
+  }
+]
