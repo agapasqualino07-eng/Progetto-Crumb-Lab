@@ -1,0 +1,152 @@
+[
+  {
+    "nicchia": "auto", "nome": "GIO.DA", "citta": "Acireale",
+    "indirizzo": "Via Cristoforo Colombo 18", "telefono": "371 4233742",
+    "kicker": "Auto usate selezionate · Acireale",
+    "h1": "Le auto le abbiamo. Ora hanno anche una casa.",
+    "sottotitolo": "Le stesse auto che vedi nelle nostre vetrine su Subito, automobile.it, Quattroruote e AutoScout24 — qui in un posto solo, con contatto diretto e consegna a domicilio.",
+    "badge": ["🚗 Usato selezionato", "🏠 Consegna a domicilio", "📍 Via C. Colombo 18"],
+    "servizi": [
+      ["Usato selezionato", "Ogni auto è scelta e controllata prima di entrare in vetrina: chiedici la storia di ogni veicolo."],
+      ["Consegna a domicilio", "Compri da casa: ti portiamo l'auto dove vuoi tu, anche fuori provincia."],
+      ["Vetrina sincronizzata", "Il parco auto qui sul sito si aggiorna da solo con gli annunci sui portali: quello che vedi c'è davvero."]
+    ],
+    "strip_titolo": "Parliamoci direttamente",
+    "strip_testo": "Siamo in via Cristoforo Colombo 18 ad Acireale: chiama o scrivici e ti diciamo subito se l'auto che hai visto è disponibile."
+  },
+  {
+    "nicchia": "auto", "nome": "Aral 4x4", "citta": "Acireale · Giarre",
+    "indirizzo": "Via Caronia 16/B (Acireale) · Via M. D'Azeglio 23 (Giarre)", "telefono": "095 8844899",
+    "kicker": "Specialisti fuoristrada e 4x4 · due sedi",
+    "h1": "Il fuoristrada è casa nostra",
+    "sottotitolo": "Veicoli 4x4, ricambi e accessori per il fuoristrada, su due sedi tra Acireale e Giarre: la passione per l'offroad trattata da specialisti, non da generalisti.",
+    "badge": ["🏔️ Specialisti 4x4", "🏢 Due sedi", "🔧 Ricambi e accessori"],
+    "servizi": [
+      ["Veicoli 4x4 selezionati", "Fuoristrada e SUV scelti da chi il 4x4 lo conosce davvero: chiedici la storia di ogni mezzo."],
+      ["Ricambi e accessori offroad", "La parte ricambi dedicata al fuoristrada: quello che non trovi dai generalisti."],
+      ["Due sedi al tuo servizio", "Acireale e Giarre: vieni nella sede più comoda, o chiama e prepariamo tutto."]
+    ],
+    "strip_titolo": "Gli specialisti si riconoscono online",
+    "strip_testo": "Chi cerca un 4x4 in Sicilia deve trovare voi: questa è la vetrina che lo rende possibile."
+  },
+  {
+    "nicchia": "auto", "nome": "Danilo Auto", "citta": "Caltagirone",
+    "indirizzo": "Via Sfere 42", "telefono": "327 7681517",
+    "kicker": "Auto usate garantite · Caltagirone e il Calatino",
+    "h1": "L'usato garantito di Caltagirone",
+    "sottotitolo": "Auto usate garantite nel cuore del Calatino: le trovi nei nostri annunci su automobile.it e AutoScout24, e nei video su TikTok — ora anche qui, tutte insieme.",
+    "badge": ["✅ Usato garantito", "🎬 Seguici su TikTok", "📍 Via Sfere 42"],
+    "servizi": [
+      ["Usato garantito", "Ogni auto viene consegnata con garanzia: compri tranquillo, torni volentieri."],
+      ["I video delle auto", "Le nostre auto le raccontiamo in video su TikTok: qui trovi tutto il parco, sempre aggiornato."],
+      ["Nel cuore del Calatino", "A Caltagirone, comodi anche da Grammichele, Mirabella e San Michele."]
+    ],
+    "strip_titolo": "Vieni a vederle dal vivo",
+    "strip_testo": "Chiama o scrivici: ti diciamo subito se l'auto che hai visto è ancora in piazzale."
+  },
+  {
+    "nicchia": "auto", "nome": "Automercato Pulvirenti", "citta": "Catania",
+    "indirizzo": "Viale Ulisse 25", "telefono": "095 7121095",
+    "kicker": "Auto usate dal 1971 · Viale Ulisse, Catania",
+    "h1": "Tre generazioni di auto usate, dal 1971",
+    "sottotitolo": "Il primo automercato della circonvallazione di Catania: più di cinquant'anni di targhe consegnate, oggi con la terza generazione della famiglia. Vendita e noleggio.",
+    "badge": ["📅 Dal 1971", "👨‍👩‍👦 Terza generazione", "🔑 Vendita e noleggio"],
+    "servizi": [
+      ["Usato di fiducia", "Cinquant'anni sullo stesso viale non si improvvisano: auto scelte con l'esperienza di tre generazioni."],
+      ["Noleggio", "Servizio noleggio anche da e per l'aeroporto di Fontanarossa: chiedi disponibilità."],
+      ["Storia e continuità", "I clienti del 1980 oggi mandano i figli e i nipoti: questa è la referenza che conta."]
+    ],
+    "strip_titolo": "Dal 1971, la storia è la nostra garanzia",
+    "strip_testo": "Passa dal viale Ulisse 25: guardi, chiedi, decidi con calma — come si fa da cinquant'anni."
+  },
+  {
+    "nicchia": "auto", "nome": "New Dimauto", "citta": "Misterbianco",
+    "indirizzo": "Via Vulcano 2", "telefono": "095 2273597",
+    "kicker": "Auto e moto · Misterbianco",
+    "h1": "Il 5 su 5 non è un caso",
+    "sottotitolo": "36 recensioni su Google, media 5 stelle piene: auto e moto, nuovo e usato, più noleggio — a Misterbianco, con la cura di chi ci mette la faccia su ogni mezzo.",
+    "badge": ["⭐ 5/5 su Google", "💬 36 recensioni", "🏍️ Auto e moto"],
+    "servizi": [
+      ["Auto e moto multimarca", "Nuovo e usato, due e quattro ruote: un solo interlocutore per tutto."],
+      ["Noleggio", "Soluzioni di noleggio per ogni esigenza: chiedi disponibilità e tariffe."],
+      ["La reputazione parla", "36 clienti su Google, tutti a 5 stelle: leggile e poi vieni a trovarci."]
+    ],
+    "strip_titolo": "36 recensioni, tutte a 5 stelle",
+    "strip_testo": "Chi ha comprato da noi lo racconta meglio di qualsiasi pubblicità. Vieni in via Vulcano 2 a Misterbianco."
+  },
+  {
+    "nicchia": "auto", "nome": "StylCar", "citta": "Aci Sant'Antonio",
+    "indirizzo": "Via Lavina 283", "telefono": "095 7895445",
+    "kicker": "Usato selezionato a gestione familiare",
+    "h1": "L'usato scelto come per la propria famiglia",
+    "sottotitolo": "46 recensioni Google con media 4.9: una gestione familiare che seleziona ogni auto e resta al tuo fianco anche dopo l'acquisto. Ad Aci Sant'Antonio, in via Lavina 283.",
+    "badge": ["⭐ 4.9 su Google", "💬 46 recensioni", "👪 Gestione familiare"],
+    "servizi": [
+      ["Usato selezionato", "Poche auto, scelte bene: la qualità prima della quantità."],
+      ["Onestà prima di tutto", "Le recensioni parlano di trasparenza e assistenza post-vendita: è il nostro modo di lavorare."],
+      ["Ti seguiamo anche dopo", "L'acquisto è l'inizio: per qualunque cosa, sai dove trovarci."]
+    ],
+    "strip_titolo": "4.9 su 5: la fiducia si costruisce così",
+    "strip_testo": "Vieni a conoscerci in via Lavina 283: ti raccontiamo la storia di ogni auto in piazzale."
+  },
+  {
+    "nicchia": "auto", "nome": "Nuovacar", "citta": "Catania",
+    "indirizzo": "Via Luigi Galvani 25", "telefono": "095 476997",
+    "kicker": "Auto usate · Catania",
+    "h1": "Aperti quando gli altri sono chiusi",
+    "sottotitolo": "Auto usate a Catania con orari veri: dal martedì al sabato fino alle 20, e la domenica mattina. Le nostre auto le trovi anche su AutoScout24 e Quattroruote.",
+    "badge": ["🕗 Aperti fino alle 20", "📅 Anche domenica mattina", "📍 Via Galvani 25"],
+    "servizi": [
+      ["Usato controllato", "Auto verificate prima della vendita: chiedici tutto di ogni veicolo."],
+      ["Orari comodi", "Fino alle 20 nei feriali e domenica mattina: vieni quando puoi tu, non quando possiamo noi."],
+      ["Annunci sempre aggiornati", "La vetrina qui sul sito si sincronizza con i portali: quello che vedi è disponibile."]
+    ],
+    "strip_titolo": "Passa anche stasera dopo il lavoro",
+    "strip_testo": "Siamo in via Galvani 25 a Catania, aperti fino alle 20: l'auto nuova si sceglie senza fretta."
+  },
+  {
+    "nicchia": "auto", "nome": "DM Auto", "citta": "Catania",
+    "indirizzo": "Via Luigi Galvani 35", "telefono": "342 1823027",
+    "kicker": "Auto usate · Catania",
+    "h1": "Le auto che vedi sui social, dal vivo",
+    "sottotitolo": "Ci segui già su TikTok, Instagram o Facebook? Qui trovi tutto il parco auto in un posto solo, con prezzi e disponibilità aggiornati — e il WhatsApp per chiedere subito.",
+    "badge": ["🎬 TikTok · IG · FB attivi", "🚗 Usato multimarca", "📍 Via Galvani 35"],
+    "servizi": [
+      ["Usato multimarca", "Auto selezionate e raccontate una per una, anche in video sui nostri canali."],
+      ["Dai social al piazzale", "Vedi l'auto in un video? Qui trovi scheda completa, prezzo e disponibilità."],
+      ["Contatto immediato", "Chiama o scrivi su WhatsApp: rispondiamo in giornata."]
+    ],
+    "strip_titolo": "Dal video al volante",
+    "strip_testo": "Siamo in via Galvani 35 a Catania: scrivici e ti prepariamo l'auto per il test."
+  },
+  {
+    "nicchia": "auto", "nome": "F.G. Crystal Car", "citta": "Catania",
+    "indirizzo": "Viale delle Medaglie d'Oro 6/A", "telefono": "095 2198261",
+    "kicker": "Vendita e noleggio · Catania",
+    "h1": "Auto, moto e scooter: vendita e noleggio in un posto solo",
+    "sottotitolo": "A Catania, aperti tutti i giorni: auto usate, moto e scooter elettrici, in vendita e a noleggio. Una sola telefonata per tutto quello che si muove.",
+    "badge": ["🔑 Vendita e noleggio", "🛵 Anche scooter elettrici", "📅 Aperti tutti i giorni"],
+    "servizi": [
+      ["Auto e moto usate", "Veicoli controllati, con la trasparenza di chi lavora in città da anni."],
+      ["Noleggio", "Auto e scooter a noleggio, anche per lunghi periodi: chiedi un preventivo."],
+      ["Sempre aperti", "Tutti i giorni 8:30-13 e 15:30-20: passa quando vuoi."]
+    ],
+    "strip_titolo": "Una telefonata, tutte le risposte",
+    "strip_testo": "Viale delle Medaglie d'Oro 6/A: chiama o scrivici su WhatsApp per disponibilità e prezzi."
+  },
+  {
+    "nicchia": "auto", "nome": "NIC CAR", "citta": "Gravina di Catania",
+    "indirizzo": "Via Gramsci 62", "telefono": "340 2413901",
+    "kicker": "Usato selezionato con officina interna",
+    "h1": "Ogni auto passa prima dalla nostra officina",
+    "sottotitolo": "A Gravina di Catania, l'usato \"Selection by NicCar\": ogni veicolo è controllato nella nostra officina interna prima di andare in vendita. Lo trovi anche su Subito, automobile.it e Autosupermarket.",
+    "badge": ["🔧 Officina interna", "✅ Selection by NicCar", "📍 Via Gramsci 62"],
+    "servizi": [
+      ["Usato controllato in casa", "L'officina interna verifica ogni auto prima della vendita: nessuna sorpresa."],
+      ["Selection by NicCar", "La nostra selezione di veicoli garantiti, col tagliando fatto da noi."],
+      ["Assistenza continua", "L'officina resta a tua disposizione anche dopo l'acquisto."]
+    ],
+    "strip_titolo": "Compra dove ti fanno anche l'assistenza",
+    "strip_testo": "Via Gramsci 62, Gravina di Catania: vieni a vedere la selezione, l'officina è qui accanto."
+  }
+]
